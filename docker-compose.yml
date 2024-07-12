@@ -12,8 +12,7 @@ services:
     ports:
       - "3307:3306"
   spring-app:
-    build:
-      dockerfile: Dockerfile
+    image: quangthai311002/feedbackdocker
     ports:
       - "8444:8084"
     depends_on:
