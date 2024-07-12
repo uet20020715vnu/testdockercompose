@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'feedback'
+      MYSQL_ROOT_PASSWORD: 'quangthai3110'
+#    volumes:
+#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+#      -  C:\ALLSOFTWARE\youtube_1\SpringGradle\data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+  spring-app:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8444:8084"
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
